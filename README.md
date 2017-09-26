@@ -39,6 +39,52 @@ Data class:
 data class Ship(val name: String, val age: Int)
 ```
 
+Delegate példa:
+
+```kotlin
+interface Pressable {
+    fun press()
+}
+class MyButton(val x: Int) : Pressable {
+    override fun press() { print("press $x") }
+}
+
+class SpecialButton(pressable: Pressable) : Pressable by pressable
+
+fun main(args: Array<String>) {
+    val btn = MyButton(10)
+    SpecialButton(btn).press() // press 10
+}
+```
+
+Range-k:
+
+```kotlin
+val x = 4
+val y = 3
+if (x in 1..y+1) {
+    Log.d("TAG_DEMO", "x benne van")
+}
+```
+
+Range iteráció:
+
+```kotlin
+for (nr in 1..10 step 2) {
+    Log.d("TAG_DEMO", "szam $nr")
+}
+```
+
+Lambda műveletek kollekciókon:
+
+```kotlin
+val fruits = listOf("alma", "mango", "mandarin", "narancs")
+fruits.filter { it.startsWith("m") }
+        .sortedBy { it }
+        .map { it.toUpperCase() }
+        .forEach { Log.d("TAG_DEMO", "$it") }
+ ```
+
 ### 1.2 TicTactoe példa
 
 Singleton model osztály:
